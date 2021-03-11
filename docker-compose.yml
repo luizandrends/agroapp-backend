@@ -5,6 +5,7 @@ volumes:
 services:
   pgsql:
     image: bitnami/postgresql:latest
+
     ports:
       - '5432:5432'
     environment:
@@ -14,6 +15,14 @@ services:
     volumes:
       - data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  mongo: #https://hub.docker.com/_/mongo
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - 27017:27017
   backend:
     build:
       context: .
@@ -22,9 +31,11 @@ services:
     env_file:
       - .env
     volumes:
-      - '.:/app'
+      - .:/app
     ports:
+      - 9229:9229
       - 3333:3333
     links:
       - pgsql
+      - mongo
     command: sh -c "yarn install && yarn typeorm migration:run && yarn dev:server"

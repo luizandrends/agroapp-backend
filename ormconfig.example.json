@@ -16,5 +16,18 @@
     "cli": {
       "migrationsDir": "./src/shared/infra/database/migrations"
     }
+  },
+  {
+    "name": "mongo",
+    "type": "mongodb",
+    "host": "",
+    "port": "",
+    "username": "",
+    "password": "",
+    "database": "",
+    "authSource": "",
+    "entities": [
+      "./src/modules/**/infra/database/schemas/*.ts"
+    ]
   }
 ]
