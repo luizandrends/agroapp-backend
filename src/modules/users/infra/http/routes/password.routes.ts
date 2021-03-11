@@ -3,9 +3,13 @@ import { celebrate, Segments, Joi } from 'celebrate';
 
 import ForgotPasswordController from '../controllers/ForgotPasswordController';
 import ResetPasswordController from '../controllers/ResetPasswordController';
+import UpdatePasswordController from '../controllers/UpdatePasswordController';
+
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const forgotPasswordController = new ForgotPasswordController();
 const resetPasswordController = new ResetPasswordController();
+const updatePasswordController = new UpdatePasswordController();
 
 const passwordRouter = Router();
 
@@ -19,7 +23,20 @@ passwordRouter.post(
   forgotPasswordController.create
 );
 
-passwordRouter.post(
+passwordRouter.put(
+  '/update',
+  celebrate({
+    [Segments.BODY]: {
+      old_password: Joi.string().required(),
+      password: Joi.string().required().min(6),
+      confirm_password: Joi.string().required().min(6),
+    },
+  }),
+  ensureAuthenticated,
+  updatePasswordController.update
+);
+
+passwordRouter.put(
   '/reset',
   celebrate({
     [Segments.BODY]: {

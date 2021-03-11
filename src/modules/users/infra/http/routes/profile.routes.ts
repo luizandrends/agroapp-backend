@@ -15,9 +15,6 @@ profileRouter.put(
     [Segments.BODY]: {
       name: Joi.string(),
       email: Joi.string().email(),
-      old_password: Joi.string().min(6),
-      password: Joi.string().min(6),
-      confirm_password: Joi.string().min(6),
     },
   }),
   ensureAuthenticated,

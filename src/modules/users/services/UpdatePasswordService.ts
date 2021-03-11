@@ -63,7 +63,9 @@ class UpdatePasswordService {
       throw new AppError('Wrong password', 401);
     }
 
-    user.password = password;
+    const newPassword = await this.hashProvider.generateHash(password);
+
+    user.password = newPassword;
 
     await this.usersRepository.save(user);
 
