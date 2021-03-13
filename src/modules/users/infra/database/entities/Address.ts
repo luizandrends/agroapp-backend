@@ -5,35 +5,30 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
-  OneToOne,
-  JoinColumn,
 } from 'typeorm';
 
-import { Exclude } from 'class-transformer';
-
-import Address from './Address';
-
-@Entity('users')
-class User {
+@Entity('addresses')
+class Address {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  state: string;
 
   @Column()
-  email: string;
+  city: string;
 
   @Column()
-  address_id: string;
+  cep: string;
 
-  @OneToOne(() => Address)
-  @JoinColumn({ name: 'address_id' })
-  address: Address;
-
-  @Exclude()
   @Column()
-  password: string;
+  neighborhood: string;
+
+  @Column()
+  street: string;
+
+  @Column()
+  house_number: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -45,4 +40,4 @@ class User {
   deleted_at: Date;
 }
 
-export default User;
+export default Address;

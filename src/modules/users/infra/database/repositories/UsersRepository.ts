@@ -20,6 +20,7 @@ class UsersRepository implements IUsersInterface {
   public async findById(user_id: string): Promise<User | undefined> {
     const findUser = await this.ormRepository.findOne({
       where: { id: user_id },
+      relations: ['address'],
     });
 
     return findUser;
