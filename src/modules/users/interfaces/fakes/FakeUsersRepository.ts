@@ -29,6 +29,12 @@ class FakeUsersRepository implements IUsersInterface {
     return findUser;
   }
 
+  public async saveAddres(addressId: string, userId: string): Promise<void> {
+    const findIndex = this.users.findIndex(findUser => findUser.id === userId);
+
+    this.users[findIndex].address_id = addressId;
+  }
+
   public async save(user: User): Promise<User> {
     const findIndex = this.users.findIndex(findUser => findUser.id === user.id);
 
