@@ -52,11 +52,10 @@ class CreateUserService {
 
     await this.addressRepository.save(address);
 
-    const { id: addressId } = address;
+    const addressId = address.id;
+    const userId = user.id;
 
-    user.address_id = addressId;
-
-    await this.usersRepository.save(user);
+    this.usersRepository.saveAddres(addressId, userId);
 
     const returnData = {
       user,

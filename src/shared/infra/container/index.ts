@@ -12,6 +12,9 @@ import UserTokensRepository from '@modules/users/infra/database/repositories/Use
 import IBlacklistTokensInterface from '@modules/users/interfaces/IBlacklistTokensInterface';
 import BlacklistTokensRepository from '@modules/users/infra/database/repositories/BlacklistTokensRepository';
 
+import IAddressInterface from '@modules/users/interfaces/IAddressInterface';
+import AddressesRepository from '@modules/users/infra/database/repositories/AddressesRepository';
+
 container.registerSingleton<IUsersInterface>(
   'UsersRepository',
   UsersRepository
@@ -25,4 +28,9 @@ container.registerSingleton<IUserTokensInterface>(
 container.registerSingleton<IBlacklistTokensInterface>(
   'BlacklistTokensRepository',
   BlacklistTokensRepository
+);
+
+container.registerSingleton<IAddressInterface>(
+  'AddressesRepository',
+  AddressesRepository
 );

@@ -14,6 +14,7 @@ class CreateAddressController {
       street,
       house_number,
     } = request.body;
+
     const user_id = request.user.id;
 
     const createAddressData = {
