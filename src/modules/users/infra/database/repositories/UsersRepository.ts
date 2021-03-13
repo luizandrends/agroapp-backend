@@ -34,7 +34,7 @@ class UsersRepository implements IUsersInterface {
     return findUser;
   }
 
-  public async saveAddres(address_id: string, user_id: string): Promise<void> {
+  public async saveAddress(address_id: string, user_id: string): Promise<void> {
     getConnection()
       .createQueryBuilder()
       .update(User)

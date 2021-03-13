@@ -29,7 +29,7 @@ class FakeUsersRepository implements IUsersInterface {
     return findUser;
   }
 
-  public async saveAddres(addressId: string, userId: string): Promise<void> {
+  public async saveAddress(addressId: string, userId: string): Promise<void> {
     const findIndex = this.users.findIndex(findUser => findUser.id === userId);
 
     this.users[findIndex].address_id = addressId;

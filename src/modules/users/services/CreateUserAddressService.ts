@@ -55,7 +55,7 @@ class CreateUserService {
     const addressId = address.id;
     const userId = user.id;
 
-    this.usersRepository.saveAddres(addressId, userId);
+    this.usersRepository.saveAddress(addressId, userId);
 
     const returnData = {
       user,
