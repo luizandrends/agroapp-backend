@@ -28,7 +28,7 @@ class Address {
   street: string;
 
   @Column()
-  house_number: string;
+  house_number: number;
 
   @CreateDateColumn()
   created_at: Date;
