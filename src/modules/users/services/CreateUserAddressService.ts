@@ -34,7 +34,7 @@ class CreateUserService {
       throw new AppError('Unexistent user', 400);
     }
 
-    if (user.address) {
+    if (user.address_id) {
       throw new AppError(
         'You can not create more then one address for a user',
         400
