@@ -17,6 +17,14 @@ class FakeUserAddressRepository implements IAddressInterface {
     return address;
   }
 
+  public async findAddressById(
+    address_id: string
+  ): Promise<Address | undefined> {
+    const findAddress = this.address.find(address => address.id === address_id);
+
+    return findAddress;
+  }
+
   public async save(address: Address): Promise<Address> {
     const findIndex = this.address.findIndex(
       findAddress => findAddress.id === address.id
