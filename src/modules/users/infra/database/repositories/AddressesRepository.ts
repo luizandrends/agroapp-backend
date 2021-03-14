@@ -17,6 +17,16 @@ class AddressesRepository implements IAddressInterface {
     return user;
   }
 
+  public async findAddressById(
+    address_id: string
+  ): Promise<Address | undefined> {
+    const findAddress = this.ormRepository.findOne({
+      where: { id: address_id },
+    });
+
+    return findAddress;
+  }
+
   public async save(user: Address): Promise<Address> {
     return this.ormRepository.save(user);
   }
